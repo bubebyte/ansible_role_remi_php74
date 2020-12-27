@@ -1,0 +1,24 @@
+---
+- name: Find all existing configurations
+  find:
+    paths: /etc/opt/remi/php74/php-fpm.d
+    file_type: file
+    use_regex: yes
+    patterns: ['.*.conf$']
+  register: existing_configurations
+
+- name: Init list of managed pools
+  set_fact:
+    managed_pools: []
+
+- name: Build list of managed pools
+  set_fact:
+    managed_pools: "{{ managed_pools + [ item.name ] }}"
+  loop: "{{ remi_php74_fpm_pools }}"
+
+- name: Remove unmanaged pool configurations
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  when: item.path|basename|splitext|first not in managed_pools
+  loop: "{{ existing_configurations.files }}"

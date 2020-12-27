@@ -1,0 +1,13 @@
+---
+- name: "Set php-fpm settings for pool {{ remi_php74_fpm_pool.name }}"
+  community.general.ini_file:
+    path: "/etc/opt/remi/php74/php-fpm.d/{{ remi_php74_fpm_pool.name }}.conf"
+    section: "{{ remi_php74_fpm_pool.name }}"
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+    owner: root
+    group: root
+    mode: '0644'
+    backup: false
+  loop: "{{ remi_php74_fpm_pool.options | dict2items }}"
+  notify: Restart php-fpm daemon

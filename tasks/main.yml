@@ -1,0 +1,25 @@
+---
+- name: Include vars
+  ansible.builtin.include_vars:
+    file: RedHat.yml
+
+- name: Install EPEL and REMI repository
+  ansible.builtin.dnf:
+    name:
+      - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
+      - "https://rpms.remirepo.net/enterprise/remi-release-8.rpm"
+    state: present
+
+- name: Install PHP74 from REMI repository
+  ansible.builtin.dnf:
+    name: "{{ remi_php74_packages }}"
+    state: present
+
+- name: Inlcude task to remove unmanaged pool configurations
+  include_tasks: remove-unmanaged-pool-configurations.yml
+
+- name: Inlcude task to set php-fpm settings
+  include_tasks: set-php-fpm-settings.yml
+  loop: "{{ remi_php74_fpm_pools }}"
+  loop_control:
+    loop_var: remi_php74_fpm_pool

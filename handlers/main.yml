@@ -1,0 +1,5 @@
+---
+- name: Restart php-fpm daemon
+  service:
+    name: php74-php-fpm
+    state: restarted
