@@ -3,7 +3,7 @@
   find:
     paths: /etc/opt/remi/php74/php-fpm.d
     file_type: file
-    use_regex: yes
+    use_regex: true
     patterns: ['.*.conf$']
   register: existing_configurations
 
