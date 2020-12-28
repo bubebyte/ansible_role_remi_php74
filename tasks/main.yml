@@ -25,6 +25,17 @@
     name: "{{ remi_php74_packages }}"
     state: present
 
+- name: Add php-fpm package to extra packages
+  set_fact:
+    remi_php74_extra_packages: "{{ remi_php74_extra_packages + [ 'php74-php-fpm' ] }}"
+  when:
+    - remi_php74_fpm_enable|bool
+
+- name: Install extra packages
+  ansible.builtin.dnf:
+    name: "{{ remi_php74_extra_packages }}"
+    state: present
+
 - name: Inlcude task to remove unmanaged pool configurations
   include_tasks: remove-unmanaged-pool-configurations.yml
 
