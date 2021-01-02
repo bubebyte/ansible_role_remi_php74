@@ -1,4 +1,6 @@
 ---
+remi_php74_install_epel_repository: true
+remi_php74_install_remi_repository: true
 remi_php74_extra_packages: []
 remi_php74_fpm_enable: true
 remi_php74_fpm_pools:

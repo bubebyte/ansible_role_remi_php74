@@ -7,18 +7,29 @@
   ansible.builtin.rpm_key:
     key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
     state: present
+  when:
+    - remi_php74_install_epel_repository|bool
 
 - name: Install required gpg for remi repository installation
   ansible.builtin.rpm_key:
     key: https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
     state: present
+  when:
+    - remi_php74_install_remi_repository|bool
 
-- name: Install EPEL and REMI repository
+- name: Install EPEL repository
   ansible.builtin.dnf:
-    name:
-      - "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
-      - "https://rpms.remirepo.net/enterprise/remi-release-8.rpm"
+    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
     state: present
+  when:
+    - remi_php74_install_epel_repository|bool
+
+- name: Install REMI repository
+  ansible.builtin.dnf:
+    name: "https://rpms.remirepo.net/enterprise/remi-release-8.rpm"
+    state: present
+  when:
+    - remi_php74_install_remi_repository|bool
 
 - name: Install PHP74 from REMI repository
   ansible.builtin.dnf:
