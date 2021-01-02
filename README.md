@@ -57,4 +57,4 @@ none
 MIT License
 
 ## Author Information
-[Armin Bube][https://bubebyte.de]
+[Armin Bube](https://bubebyte.de)
