@@ -38,7 +38,7 @@
 
 - name: Add php-fpm package to extra packages
   set_fact:
-    remi_php74_extra_packages: "{{ remi_php74_extra_packages + [ 'php74-php-fpm' ] }}"
+    remi_php74_extra_packages: "{{ remi_php74_extra_packages + ['php74-php-fpm'] }}"
   when:
     - remi_php74_fpm_enable|bool
 

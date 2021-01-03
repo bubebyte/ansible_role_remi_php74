@@ -13,7 +13,7 @@
 
 - name: Build list of managed pools
   set_fact:
-    managed_pools: "{{ managed_pools + [ item.name ] }}"
+    managed_pools: "{{ managed_pools + [item.name] }}"
   loop: "{{ remi_php74_fpm_pools }}"
 
 - name: Remove unmanaged pool configurations

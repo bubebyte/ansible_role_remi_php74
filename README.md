@@ -1,7 +1,7 @@
 # remi_php74
 
 ## Description
-Ansible role to install and configure php74 from remi repository.
+Ansible role to install and configure php74 from remi repository on CentOS 8 or CentOS Stream 8.
 
 ## Example Playbook
 ```YAML
