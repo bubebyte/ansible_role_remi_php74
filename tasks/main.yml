@@ -63,7 +63,7 @@
   service:
     name: php74-php-fpm
     state: started
-    enabled: yes
+    enabled: true
   when:
     - remi_php74_fpm_enable|bool
     - remi_php74_fpm_pools is defined

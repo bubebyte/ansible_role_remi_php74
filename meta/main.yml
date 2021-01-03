@@ -11,9 +11,9 @@ galaxy_info:
   github_branch: main
 
   platforms:
-  - name: EL
-    versions:
-    - 8
+    - name: EL
+      versions:
+        - 8
 
   galaxy_tags:
     - php

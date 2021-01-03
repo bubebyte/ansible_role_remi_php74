@@ -20,4 +20,3 @@
       fail:
         msg: The service php74-php-fpm is not enabled.
       when: ansible_facts.services["php74-php-fpm.service"].status != "enabled"
-
