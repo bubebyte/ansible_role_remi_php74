@@ -11,7 +11,7 @@ galaxy_info:
   github_branch: main
 
   platforms:
-  - name: CentOS
+  - name: EL
     versions:
     - 8
 
