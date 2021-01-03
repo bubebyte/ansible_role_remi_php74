@@ -2,8 +2,8 @@
 name: Role testing with Molecule
 
 on:
-  - push:
-  - pull_request:
+  - push
+  - pull_request
 
 jobs:
   build:
