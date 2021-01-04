@@ -1,0 +1,10 @@
+---
+- name: Check os family
+  fail:
+    msg: "This role is not tested for {{ ansible_os_family }}"
+  when: ansible_os_family != "RedHat"
+
+- name: Check os release
+  fail:
+    msg: "This role is not tested for os release {{ ansible_distribution_major_version }}"
+  when: ansible_distribution_major_version != "8"

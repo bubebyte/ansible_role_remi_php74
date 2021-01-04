@@ -1,4 +1,7 @@
 ---
+- name: Inlcude tasks to check operating system
+  include_tasks: check_os.yml
+
 - name: Include vars
   ansible.builtin.include_vars:
     file: RedHat.yml
