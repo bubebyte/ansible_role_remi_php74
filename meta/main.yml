@@ -19,7 +19,7 @@ galaxy_info:
   galaxy_tags:
     - php
     - fpm
-    - phpfmp
+    - phpfpm
     - web
 
 dependencies: []
