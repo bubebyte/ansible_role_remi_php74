@@ -4,11 +4,12 @@
 
 - name: Include vars
   ansible.builtin.include_vars:
-    file: RedHat.yml
+    file: "RedHat-{{ ansible_distribution_major_version }}.yml"
+  when: ansible_os_family == "RedHat"
 
 - name: Install required gpg for epel repository installation
   ansible.builtin.rpm_key:
-    key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
+    key: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
     state: present
   when:
     - remi_php74_install_epel_repository|bool
@@ -21,21 +22,21 @@
     - remi_php74_install_remi_repository|bool
 
 - name: Install EPEL repository
-  ansible.builtin.dnf:
-    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
+  ansible.builtin.package:
+    name: "https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm"
     state: present
   when:
     - remi_php74_install_epel_repository|bool
 
 - name: Install REMI repository
-  ansible.builtin.dnf:
-    name: "https://rpms.remirepo.net/enterprise/remi-release-8.rpm"
+  ansible.builtin.package:
+    name: "https://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm"
     state: present
   when:
     - remi_php74_install_remi_repository|bool
 
 - name: Install PHP74 from REMI repository
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: "{{ remi_php74_packages }}"
     state: present
 
@@ -46,7 +47,7 @@
     - remi_php74_fpm_enable|bool
 
 - name: Install extra packages
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: "{{ remi_php74_extra_packages }}"
     state: present
 
