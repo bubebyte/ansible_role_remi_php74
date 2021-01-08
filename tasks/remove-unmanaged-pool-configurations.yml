@@ -21,4 +21,5 @@
     path: "{{ item.path }}"
     state: absent
   when: item.path|basename|splitext|first not in managed_pools
+  notify: Restart php-fpm daemon
   loop: "{{ existing_configurations.files }}"
