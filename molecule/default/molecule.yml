@@ -12,6 +12,7 @@ lint: |
 platforms:
   - name: "remi-php74-${MOLECULE_DISTRO:-centos8}-${BUILD_NUMBER:-0}"
     image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:${TAG:-latest}"
+    platform: "linux/amd64"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -20,6 +21,8 @@ platforms:
     tty: true
 provisioner:
   name: ansible
+  env:
+    ANSIBLE_ROLES_PATH: "${MOLECULE_PROJECT_DIRECTORY}/../"
   lint:
     name: ansible-lint
   playbooks:

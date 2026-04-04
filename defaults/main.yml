@@ -1,4 +1,5 @@
 ---
+remi_php74_ignore_eol_warning: false
 remi_php74_install_epel_repository: true
 remi_php74_install_remi_repository: true
 remi_php74_extra_packages: []

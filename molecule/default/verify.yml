@@ -12,11 +12,11 @@
         var: ansible_facts.services["php74-php-fpm.service"]
 
     - name: Check php-fpm service state
-      fail:
+      ansible.builtin.fail:
         msg: The service php74-php-fpm is not running.
       when: ansible_facts.services["php74-php-fpm.service"].state != "running"
 
     - name: Check php-fpm service state
-      fail:
+      ansible.builtin.fail:
         msg: The service php74-php-fpm is not enabled.
       when: ansible_facts.services["php74-php-fpm.service"].status != "enabled"

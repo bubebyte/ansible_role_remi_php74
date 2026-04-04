@@ -1,4 +1,10 @@
 ---
+- name: EOL warning
+  ansible.builtin.fail:
+    msg: PHP 7.4 reached its official end of life on 28th of November 2022. Please upgrade to a newer version.
+  when:
+    - not remi_php74_ignore_eol_warning|bool
+
 - name: Inlcude tasks to check operating system
   include_tasks: check_os.yml
 

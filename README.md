@@ -1,5 +1,12 @@
 # remi_php74
 
+## WARNING !
+
+PHP 7.4 reached its official end of life on 28th of November 2022.
+Please upgrade to a newer version.
+
+THIS ROLE IS NOT MAINTAINED!
+
 ## Description
 Ansible role to install and configure php74 from remi repository on CentOS.
 
@@ -19,6 +26,7 @@ Ansible role to install and configure php74 from remi repository on CentOS.
 These are the role default which are set in default/main.yml:
 ```YAML
 ---
+remi_php74_ignore_eol_warning: false
 remi_php74_install_epel_repository: true
 remi_php74_install_remi_repository: true
 remi_php74_extra_packages: []

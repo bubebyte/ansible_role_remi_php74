@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  namespace: bubebyte
   role_name: remi_php74
   author: Armin Bube
   description: "Ansible role to install and configure php74 from remi repository on CentOS."
